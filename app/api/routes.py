@@ -7,6 +7,8 @@ from app.services.address_service import (
     update_address,
     delete_address,
 )
+from app.services.distance import get_addresses_within_distance
+from app.services.address_service import get_all_addresses
 
 router = APIRouter(prefix="/addresses", tags=["Addresses"])
 
@@ -32,3 +34,16 @@ def update(address_id: int, data: AddressUpdate, db: Session = Depends(get_db)):
 @router.delete("/{address_id}")
 def delete(address_id: int, db: Session = Depends(get_db)):
     return delete_address(db, address_id)
+
+@router.get("/near", response_model=list[AddressResponse])
+def get_nearby_addresses(
+    lat: float,
+    lon: float,
+    distance: float,
+    db: Session = Depends(get_db)
+):
+    return get_addresses_within_distance(db, lat, lon, distance)
+
+@router.get("/", response_model=list[AddressResponse])
+def get_addresses(db: Session = Depends(get_db)):
+    return get_all_addresses(db)
