@@ -4,6 +4,24 @@ A FastAPI application that allows users to create, update, delete, and search ad
 
 ---
 
+## Getting Started
+
+Clone the repository:
+
+```bash
+git clone https://github.com/jamesjasper23/eastvantage.git
+```
+
+Navigate into the project directory:
+
+```bash
+cd eastvantage
+```
+
+
+
+---
+
 ## Features
 
 - Create address
@@ -51,13 +69,11 @@ requirements.txt
 
 ## Option 1 — Run with Docker (Recommended)
 
-Build and start the application:
-
 ```bash
 docker compose up --build
 ```
 
-The API will be available at:
+Open the API documentation:
 
 ```
 http://localhost:3001/docs
